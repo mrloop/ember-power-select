@@ -116,9 +116,9 @@ export default Ember.Component.extend({
     const { _options: options, _searchText: searchText } = this.getProperties('_options', '_searchText');
     let matcher;
     if (this.get('searchField')) {
-      matcher = (option, text) => this.matcher(get(option, this.get('searchField')), text);
+      matcher = (option, text) => this.get('matcher')(get(option, this.get('searchField')), text);
     } else {
-      matcher = (option, text) => this.matcher(option, text);
+      matcher = (option, text) => this.get('matcher')(option, text);
     }
     this.set('results', filterOptions(options || [], searchText, matcher));
     this._resultsDirty = false;
